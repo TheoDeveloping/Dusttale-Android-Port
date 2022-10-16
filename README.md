@@ -4,7 +4,7 @@ Jaja Soy La Verga, MayKoll Me Llamo Para Hacer El Colabo Y Sin Querer Queriendo 
 # Credits
 ### Porters
 - [TheoDev](https://www.youtube.com/c/TheoDeveloper) - Android Porter
-- [TheMaykollYT](https://www.youtube.com/c/THEMAYKOLLYT) - Idea Del Colabo, Bueno Para Nada
+- [TheMaykollYT](https://youtube.com/channel/UC7zIWAVRqtZioMeDI7unXSQ)) - Jaja soy el de la mierda,idea Del Colabo, Bueno Para Nada
 # Dusttale Team
 - [WassabiSoja](https://youtube.com/channel/UC_rh4Jgm1FXeZyJCSQ-tzsg) - Owner Of The Mod
 - [StampS](https://gamebanana.com/members/1953621) - Coding Help, Cool guy
