@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import android.FlxVirtualPad;
 import android.Hitbox;
-import android.Save;
+import android.ControlMode;
 
 class MobileControls extends FlxSpriteGroup
 {
