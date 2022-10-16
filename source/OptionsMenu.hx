@@ -103,7 +103,7 @@ class OptionsMenu extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		
-		androidText = new FlxText(5, FlxG.height + 25, 0, "Press "C" To Custom Your Android Controls", 12);
+		androidText = new FlxText(5, FlxG.height + 25, 0, 0, "Press C To Custom Your Android Controls", 12);
 		androidText.scrollFactor.set();
 		androidText.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		
