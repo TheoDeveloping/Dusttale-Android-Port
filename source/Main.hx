@@ -74,6 +74,11 @@ class Main extends Sprite
 			gameWidth = Math.ceil(stageWidth / zoom);
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
+		#if mobile
+		gameWidth = 1280;
+		gameHeight = 720;
+		zoom = 1;
+		#end
 
 		#if cpp
 		initialState = Caching;
@@ -83,12 +88,12 @@ class Main extends Sprite
 		#end
 		addChild(game);
 		
-		#if !mobile
+		//#if !mobile
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
 		toggleFPS(FlxG.save.data.fps);
 
-		#end
+		//#end
 	}
 
 	var game:FlxGame;

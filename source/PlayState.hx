@@ -74,6 +74,10 @@ import Sys;
 import sys.FileSystem;
 #end
 
+#if mobileC
+	import android.MobileControls;
+	#end
+
 using StringTools;
 
 class PlayState extends MusicBeatState
@@ -313,6 +317,10 @@ class PlayState extends MusicBeatState
 	
 	public function addObject(object:FlxBasic) { add(object); }
 	public function removeObject(object:FlxBasic) { remove(object); }
+	
+	#if mobileC
+	var _controls:MobileControls; 
+	#end
 
 	override public function create()
 	{
@@ -1460,6 +1468,26 @@ class PlayState extends MusicBeatState
 
 		if (loadRep)
 			replayTxt.cameras = [camHUD];
+			
+		#if mobileC
+			mcontrols = new Mobilecontrols();
+			switch (mcontrols.mode)
+			{
+				case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
+					controls.setVirtualPad(mcontrols._virtualPad, FULL, NONE);
+				case HITBOX:
+					controls.setHitBox(mcontrols._hitbox);
+				default:
+			}
+			trackedinputs = controls.trackedinputs;
+			controls.trackedinputs = [];
+
+			mcontrols.cameras = [camHUD];
+
+			mcontrols.visible = false;
+
+			add(mcontrols);
+		#end
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1562,6 +1590,9 @@ class PlayState extends MusicBeatState
 
 	function startCountdown():Void
 	{
+	  #if mobileC
+      mcontrols.visible = true;
+    #end
 		inCutscene = false;
 
 		generateStaticArrows(0);
@@ -3187,6 +3218,9 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
+	  #if mobileC
+      mcontrols.visible = false;
+    #end
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 		if (useVideo)
 			{

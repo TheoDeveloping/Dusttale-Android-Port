@@ -38,11 +38,15 @@ class EndingState extends MusicBeatState
         add(endingScreen);
 
         super.create();
+        
+        #if mobileC
+		    addVirtualPad(NONE, A);
+		    #end
     }
 
     override public function update(elapsed:Float)
     {
-        if (FlxG.keys.justPressed.ENTER)
+        if (controls.ENTER)
         {
             FlxG.switchState(new MainMenuState());
         }

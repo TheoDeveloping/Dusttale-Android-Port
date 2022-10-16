@@ -235,6 +235,10 @@ class StoryMenuState extends MusicBeatState
 		updateText();
 
 		trace("Line 165");
+		
+		#if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
 
 		super.create();
 	}
@@ -300,12 +304,12 @@ class StoryMenuState extends MusicBeatState
 					}
 				}
 
-				if (FlxG.keys.justPressed.UP)
+				if (controls.UP)
 				{
 					changeWeek(-1);
 				}
 
-				if (FlxG.keys.justPressed.DOWN)
+				if (controls.DOWN)
 				{
 					changeWeek(1);
 				}

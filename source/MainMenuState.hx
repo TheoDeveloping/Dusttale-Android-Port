@@ -152,7 +152,7 @@ class MainMenuState extends MusicBeatState
 
 
 
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, gameVer +  (Main.watermarks ? " FNF: " + kadeEngineVer + "DUSTTALE" : ""), 12);
+		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "FnF: Dusttale Android Port By TheoDev", 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -166,6 +166,10 @@ class MainMenuState extends MusicBeatState
 			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
 
 		changeItem();
+		
+		#if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
 
 		super.create();
 	}
@@ -224,13 +228,13 @@ class MainMenuState extends MusicBeatState
 				}
 			}
 
-			if (FlxG.keys.justPressed.UP)
+			if (controls.UP)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(-1);
 			}
 
-			if (FlxG.keys.justPressed.DOWN)
+			if (controls.DOWN)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(1);

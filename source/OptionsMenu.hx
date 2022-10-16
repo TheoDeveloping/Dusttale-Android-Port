@@ -103,15 +103,25 @@ class OptionsMenu extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		
-		blackBorder = new FlxSprite(-30,FlxG.height + 40).makeGraphic((Std.int(versionShit.width + 900)),Std.int(versionShit.height + 600),FlxColor.BLACK);
+		androidText = new FlxText(5, FlxG.height + 25, 0, "Press "C" To Custom Your Android Controls", 12);
+		androidText.scrollFactor.set();
+		androidText.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		
+		blackBorder = new FlxSprite(-30,FlxG.height + 40).makeGraphic((Std.int(versionShit.width + 900)),Std.int(versionShit.height + 900),FlxColor.BLACK);
 		blackBorder.alpha = 0.5;
 
 		add(blackBorder);
 
 		add(versionShit);
+		
+		add(androidText);
 
 		FlxTween.tween(versionShit,{y: FlxG.height - 18},2,{ease: FlxEase.elasticInOut});
 		FlxTween.tween(blackBorder,{y: FlxG.height - 18},2, {ease: FlxEase.elasticInOut});
+		
+		#if mobileC
+		addVirtualPad(NONE, A_B_C);
+		#end
 
 		super.create();
 	}
@@ -122,6 +132,11 @@ class OptionsMenu extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		
+		#if android
+      if (controls.CHEAT)
+        FlxG.switchState(new android.ControlsState());
+    #end
 
 		if (acceptInput)
 		{

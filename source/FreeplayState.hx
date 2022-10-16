@@ -158,6 +158,10 @@ class FreeplayState extends MusicBeatState
 
 			trace(md);
 		 */
+		 
+		#if mobileC
+		addVirtualPad(FULL, A_B_C);
+		#end
 
 		super.create();
 	}
@@ -212,8 +216,8 @@ class FreeplayState extends MusicBeatState
 		scoreText.text = "PERSONAL BEST:" + lerpScore;
 		comboText.text = combo + '\n';
 
-		var upP = FlxG.keys.justPressed.UP;
-		var downP = FlxG.keys.justPressed.DOWN;
+		var upP = controls.UP;
+		var downP = controls.DOWN;
 		var accepted = controls.ACCEPT;
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
@@ -247,9 +251,9 @@ class FreeplayState extends MusicBeatState
 			changeSelection(1);
 		}
 
-		if (FlxG.keys.justPressed.LEFT && ableToPress)
+		if (controls.LEFT && ableToPress)
 			changeDiff(-1);
-		if (FlxG.keys.justPressed.RIGHT && ableToPress)
+		if (controls.RIGHT && ableToPress)
 			changeDiff(1);
 
 		if (controls.BACK && ableToPress)
@@ -257,7 +261,7 @@ class FreeplayState extends MusicBeatState
 			FlxG.switchState(new MainMenuState());
 		}
 
-		if (FlxG.keys.justPressed.P && ableToPress)
+		if (FlxG.keys.justPressed.P #if android || controls.CHEAT #end && ableToPress)
 		{
 			var songFormat = StringTools.replace('Cringe', " ", "-");
 			var poop:String = Highscore.formatSong('Cringe', curDifficulty);

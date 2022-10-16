@@ -95,6 +95,14 @@ class DFJKOption extends Option
 		return "Key Bindings";
 	}
 }
+class AndroidControls extends Option
+{
+public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+}
 
 class CpuStrums extends Option
 {
