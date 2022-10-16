@@ -83,7 +83,6 @@ class TitleState extends MusicBeatState
 		// DEBUG BULLSHIT
 
 		super.create();
-'
 
 		FlxG.save.bind('funkindusttale', 'wassabisoja');
 
