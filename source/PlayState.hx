@@ -1470,7 +1470,7 @@ class PlayState extends MusicBeatState
 			replayTxt.cameras = [camHUD];
 			
 		#if mobileC
-			_controls = new Mobilecontrols();
+			_controls = new MobileControls();
 			switch (_controls.mode)
 			{
 				case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
@@ -1509,13 +1509,13 @@ class PlayState extends MusicBeatState
 					case 'drowning' | 'd.i.e':
 						dialogueShit(doof);
 					case 'the-murderer':
-						playCutscene('themurderer', 112, doof);
+						playCutscene('themurderer', false, doof);
 					case 'red-megalovania':
-						playCutscene('redmegalovania', 16, doof);
+						playCutscene('redmegalovania', false, doof);
 					case 'psychotic-breakdown':
-						playCutscene('psychoticbreakdown', 22, doof);
+						playCutscene('psychoticbreakdown', false, doof);
 					case 'anthropophobia':
-						playCutscene('anthropophobia', 18, doof);
+						playCutscene('anthropophobia', false, doof);
 					default:
 						startCountdown();
 				}
@@ -1541,8 +1541,35 @@ class PlayState extends MusicBeatState
 
 		super.create();
 	}
+function playCutscene(name:String, atEndOfSong:Bool = false, ?dialogueBox:DialogueBox)
+{
+	inCutscene = true;
+	FlxG.sound.music.stop();
 
-	function playCutscene(videoPlaying:String,time:Float,dialogueBox:DialogueBox):Void
+	var video:VideoHandler = new VideoHandler();
+	video.finishCallback = function()
+	{
+		if (atEndOfSong)
+		{
+			if (storyPlaylist.length <= 0)
+				FlxG.switchState(new StoryMenuState());
+			else if (dialogueBox != null)
+			  {
+			    inCutscene = true;	
+				  add(dialogueBox);
+			  }
+			else
+			{
+				SONG = Song.loadFromJson(storyPlaylist[0].toLowerCase());
+				FlxG.switchState(new PlayState());
+			}
+		}
+		else
+			startCountdown();
+	}
+	video.playVideo(Paths.video(name));
+}
+	/*function playCutscene(videoPlaying:String,time:Float,dialogueBox:DialogueBox):Void
 	{
 		var video:MP4Handler = new MP4Handler();
    		video.playMP4(Paths.video(videoPlaying), null); 
@@ -1556,9 +1583,9 @@ class PlayState extends MusicBeatState
 			else
 				startCountdown();
 		});
-	}
+	}*/
 
-	function playCutscene2(videoPlaying:String,time:Float):Void
+	/*function (videoPlaying:String,time:Float):Void
 	{
 		var video:MP4Handler = new MP4Handler();
 		video.playMP4(Paths.video(videoPlaying), null); 
@@ -1566,7 +1593,7 @@ class PlayState extends MusicBeatState
 		{
 			LoadingState.loadAndSwitchState(new PlayState());
 		});
-	}
+	}*/
 
 	function dialogueShit(?dialogueBox:DialogueBox):Void
 	{
@@ -3303,7 +3330,7 @@ class PlayState extends MusicBeatState
 	
 							FlxG.sound.music.stop();
 							PlayState.SONG = Song.loadFromJson(poop, 'hallucinations');
-							playCutscene2('genocide', 27);
+							playCutscene('genocide', true);
 						}
 						else
 						{
@@ -3316,7 +3343,7 @@ class PlayState extends MusicBeatState
 	
 							FlxG.sound.music.stop();
 							PlayState.SONG = Song.loadFromJson(poop, 'last-hope');
-							playCutscene2('pacifist', 9.2);
+							playCutscene('pacifist', true);
 						}
 					case 'last-hope' | 'hallucinations':
 						FlxG.sound.music.stop();
@@ -3406,7 +3433,7 @@ class PlayState extends MusicBeatState
 						{
 							case 'the-murderer':
 								PlayState.SONG = Song.loadFromJson(poop, PlayState.storyPlaylist[0]);
-								playCutscene2('themurderer2', 28);
+								playCutscene('themurderer2', true);
 							case 'last-hope':
 								FlxG.save.data.pacifistEnding = true;
 								LoadingState.loadAndSwitchState(new EndingState());
@@ -3415,7 +3442,7 @@ class PlayState extends MusicBeatState
 								LoadingState.loadAndSwitchState(new EndingState());
 							case 'drowning':
 								PlayState.SONG = Song.loadFromJson(poop, PlayState.storyPlaylist[0]);
-								playCutscene2('lmao_undyne_fucking_dies', 9);
+								playCutscene('lmao_undyne_fucking_dies', true);
 							default:
 								PlayState.SONG = Song.loadFromJson(poop, PlayState.storyPlaylist[0]);
 								LoadingState.loadAndSwitchState(new PlayState());
