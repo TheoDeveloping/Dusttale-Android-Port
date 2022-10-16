@@ -44,7 +44,7 @@
 
     <assets path="assets/android/hitbox"/>
 
-	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/
+	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
     <assets path="assets/android" rename="android"/>
 	
