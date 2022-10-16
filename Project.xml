@@ -102,7 +102,8 @@
 	<assets path="dlls/" rename='' if="windows"/>
 
 	<assets path='example_mods' rename='mods' embed='false'/>
-
+	<assets path='art/readme.txt' rename='do NOT readme.txt' />
+	<assets path='LICENSE' rename='LICENSE.txt' />
 	<!-- <template path='mods' /> -->
 	
 	<!-- <assets path="CHANGELOG.md" rename='changelog.txt'/> -->
@@ -132,6 +133,8 @@
 	<haxelib name="polymod"/>
 	<haxelib name="discord_rpc" if="windows"/>
 	<haxelib name="linc_luajit" if="windows"/>
+	<haxelib name="hxCodec" if="desktop || android" />
+	<haxelib name="extension-androidtools" if="android" />
 
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
@@ -185,7 +188,8 @@
 	<icon path="art/icon256.png" size='256'/>
 	<icon path="art/icon512.png" size='512'/>
 	<icon path="art/iconOG.png" />
-
+	
+	<haxedef name="HXC_DEBUG_TRACE" if="debug" />
 
 	<!-- <haxedef name="SKIP_TO_PLAYSTATE" if="debug" /> -->
 	<!--haxedef name="NG_LOGIN" if="newgrounds" /-->
