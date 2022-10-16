@@ -46,7 +46,7 @@ class EndingState extends MusicBeatState
 
     override public function update(elapsed:Float)
     {
-        if (controls.ENTER)
+        if (controls.ACCEPT)
         {
             FlxG.switchState(new MainMenuState());
         }

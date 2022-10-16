@@ -1470,23 +1470,23 @@ class PlayState extends MusicBeatState
 			replayTxt.cameras = [camHUD];
 			
 		#if mobileC
-			mcontrols = new Mobilecontrols();
-			switch (mcontrols.mode)
+			_controls = new Mobilecontrols();
+			switch (_controls.mode)
 			{
 				case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
-					controls.setVirtualPad(mcontrols._virtualPad, FULL, NONE);
+					controls.setVirtualPad(_controls._virtualPad, FULL, NONE);
 				case HITBOX:
-					controls.setHitBox(mcontrols._hitbox);
+					controls.setHitBox(_controls._hitbox);
 				default:
 			}
 			trackedinputs = controls.trackedinputs;
 			controls.trackedinputs = [];
 
-			mcontrols.cameras = [camHUD];
+			_controls.cameras = [camHUD];
 
-			mcontrols.visible = false;
+			_controls.visible = false;
 
-			add(mcontrols);
+			add(_controls);
 		#end
 
 		// if (SONG.song == 'South')
@@ -1591,7 +1591,7 @@ class PlayState extends MusicBeatState
 	function startCountdown():Void
 	{
 	  #if mobileC
-      mcontrols.visible = true;
+      _controls.visible = true;
     #end
 		inCutscene = false;
 
@@ -3219,7 +3219,7 @@ class PlayState extends MusicBeatState
 	function endSong():Void
 	{
 	  #if mobileC
-      mcontrols.visible = false;
+      _controls.visible = false;
     #end
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 		if (useVideo)
